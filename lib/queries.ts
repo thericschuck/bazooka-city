@@ -6,6 +6,7 @@ export const ALL_PRODUCTS_QUERY = `
           id
           title
           handle
+          productType
           availableForSale
           priceRange {
             minVariantPrice {
@@ -35,6 +36,7 @@ export const SINGLE_PRODUCT_QUERY = `
       id
       title
       handle
+      productType
       description
       availableForSale
       tags

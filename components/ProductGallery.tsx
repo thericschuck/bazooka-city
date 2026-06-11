@@ -11,15 +11,15 @@ interface ProductGalleryProps {
 
 export default function ProductGallery({ images, title }: ProductGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = images[activeIndex];
+  const active = images[activeIndex];
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-[3/4] bg-card overflow-hidden">
-        {activeImage && (
+      <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+        {active && (
           <Image
-            src={activeImage.url}
-            alt={activeImage.altText ?? title}
+            src={active.url}
+            alt={active.altText ?? title}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
@@ -30,20 +30,20 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
 
       {images.length > 1 && (
         <div className="grid grid-cols-5 gap-2">
-          {images.map((image, index) => (
+          {images.map((img, i) => (
             <button
-              key={image.url}
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Bild ${index + 1} anzeigen`}
-              className={`relative aspect-square overflow-hidden bg-card transition-opacity ${
-                index === activeIndex
-                  ? 'ring-1 ring-brand-blue opacity-100'
-                  : 'opacity-50 hover:opacity-80'
+              key={img.url}
+              onClick={() => setActiveIndex(i)}
+              aria-label={`Bild ${i + 1} anzeigen`}
+              className={`relative aspect-square overflow-hidden bg-gray-100 transition-all ${
+                i === activeIndex
+                  ? 'ring-2 ring-bc-steel opacity-100'
+                  : 'opacity-50 hover:opacity-90'
               }`}
             >
               <Image
-                src={image.url}
-                alt={image.altText ?? `${title} ${index + 1}`}
+                src={img.url}
+                alt={img.altText ?? `${title} ${i + 1}`}
                 fill
                 sizes="80px"
                 className="object-cover"

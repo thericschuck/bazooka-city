@@ -1,16 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --brand-blue: #4a6fa5;
-  --brand-blue-dark: #3a5c8f;
-  --brand-grey: #6b7280;
-  --card: #f5f7fa;
-  --card-hover: #edf0f5;
-  --border: #e5e7eb;
-  --border-strong: #d1d5db;
-  --hero-bg: #0f2444;
+  --background: #0e0e10;
+  --foreground: #f0efe8;
+  --brand-blue: #506d8c;
+  --brand-blue-dark: #3d5570;
+  --brand-grey: #8c8c96;
+  --card: #1a1a1e;
+  --card-hover: #222228;
+  --border: #2c2c34;
+  --border-strong: #3a3a44;
+  --amber: #c88b2a;
+  --worn-white: #f0efe8;
+  --metallic: #8c8c96;
+  --carbon: #1a1a1e;
+  --void-black: #0e0e10;
+  /* Bazooka City hero tokens */
+  --bc-steel: #506d8d;
+  --bc-steel-text: #4a6fa5;
+  --bc-dark: #0e0e10;
+  --bc-grey: #8c8c96;
+  --bc-light: #f0efe8;
 }
 
 @theme inline {
@@ -23,14 +33,25 @@
   --color-card-hover: var(--card-hover);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-amber: var(--amber);
+  --color-worn-white: var(--worn-white);
+  --color-metallic: var(--metallic);
+  --color-carbon: var(--carbon);
+  --color-void-black: var(--void-black);
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-heading: var(--font-barlow-condensed);
+  --color-bc-steel: var(--bc-steel);
+  --color-bc-steel-text: var(--bc-steel-text);
+  --color-bc-dark: var(--bc-dark);
+  --color-bc-grey: var(--bc-grey);
+  --color-bc-light: var(--bc-light);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: var(--font-ibm-plex-sans), Arial, sans-serif;
+  font-weight: 300;
 }
 
 * {

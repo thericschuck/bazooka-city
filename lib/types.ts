@@ -27,6 +27,7 @@ export interface ShopifyProductBase {
   id: string;
   title: string;
   handle: string;
+  productType: string;
   availableForSale: boolean;
   priceRange: {
     minVariantPrice: ShopifyMoney;

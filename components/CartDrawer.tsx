@@ -32,7 +32,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-            className="fixed right-0 top-0 h-full w-full max-w-sm bg-white z-50 flex flex-col shadow-2xl"
+            className="fixed right-0 top-0 h-full w-full max-w-sm bg-card z-50 flex flex-col shadow-2xl border-l border-border"
           >
             <div className="flex items-center justify-between px-6 py-4 bg-brand-blue">
               <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-white">
@@ -97,7 +97,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
 
                     return (
                       <div key={line.id} className="flex gap-4 py-4">
-                        <div className="relative w-16 h-20 bg-card flex-shrink-0 overflow-hidden">
+                        <div className="relative w-16 h-20 bg-card shrink-0 overflow-hidden">
                           {image?.url && (
                             <Image
                               src={image.url}
