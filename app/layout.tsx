@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Barlow_Condensed, IBM_Plex_Sans, Syne, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import Providers from '@/components/Providers';
 
 const barlowCondensed = Barlow_Condensed({
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

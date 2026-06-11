@@ -8,7 +8,15 @@ export const metadata: Metadata = {
 
 export default function StoryPage() {
   return (
-    <main className="bg-gray-100 min-h-screen">
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0)), url(/concrete.jpg)',
+        backgroundSize: 'auto, cover',
+        backgroundAttachment: 'local, fixed',
+        backgroundPosition: 'center',
+      }}
+    >
 
       {/* Breadcrumb + header */}
       <div className="bg-white border-b border-gray-200">

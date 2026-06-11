@@ -10,7 +10,15 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <main className="bg-gray-100 min-h-screen">
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0)), url(/concrete.jpg)',
+        backgroundSize: 'auto, cover',
+        backgroundAttachment: 'local, fixed',
+        backgroundPosition: 'center',
+      }}
+    >
 
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
@@ -90,10 +98,10 @@ export default function KontaktPage() {
         {/* Contact form */}
         <ContactForm />
 
-        <div className="border-t border-gray-200 mt-10 mb-10" />
+        <div className="border-t border-gray-900 mt-10 mb-10" />
 
         <div className="text-center">
-          <p className="text-gray-500 text-sm mb-5">Direkt zur Kollektion?</p>
+          <p className="text-gray-900 text-sm mb-5">Direkt zur Kollektion?</p>
           <Link
             href="/shop"
             className="inline-block text-white text-xs font-bold tracking-[0.25em] uppercase px-8 py-3 hover:opacity-90 transition-opacity"
