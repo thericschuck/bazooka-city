@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Story | Bazooka City',
@@ -9,9 +10,16 @@ export default function StoryPage() {
   return (
     <main className="bg-gray-100 min-h-screen">
 
-      {/* Page header */}
+      {/* Breadcrumb + header */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-6">
+          <nav className="flex items-center gap-2 text-xs text-gray-400">
+            <Link href="/" className="hover:text-gray-700 transition-colors">Home</Link>
+            <span>›</span>
+            <span className="text-gray-700">Story</span>
+          </nav>
+        </div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
           <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-2">Die Marke</p>
           <h1 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-2">
             Story

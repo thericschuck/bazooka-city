@@ -90,6 +90,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
               ) : (
                 <div className="flex flex-col divide-y divide-border">
                   {cartLines.map((line) => {
+                    if (!line) return null;
                     const image = line.merchandise?.image;
                     const productTitle = line.merchandise?.product?.title ?? '';
                     const variantTitle = line.merchandise?.title;
