@@ -10,7 +10,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <ShopifyProvider
       storeDomain={domain}
       storefrontToken={token}
-      storefrontApiVersion="2025-01"
+      storefrontApiVersion="2026-04"
       countryIsoCode="DE"
       languageIsoCode="DE"
     >

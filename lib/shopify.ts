@@ -12,7 +12,7 @@ export async function shopifyFetch<T>({
   variables,
   revalidate = 60,
 }: ShopifyFetchParams): Promise<T> {
-  const res = await fetch(`https://${domain}/api/2025-01/graphql.json`, {
+  const res = await fetch(`https://${domain}/api/2026-04/graphql.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

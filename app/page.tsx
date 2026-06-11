@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { shopifyFetch } from '@/lib/shopify';
 import { ALL_PRODUCTS_QUERY } from '@/lib/queries';
 import type { ShopifyProductsResponse } from '@/lib/types';
@@ -14,68 +15,64 @@ export default async function HomePage() {
 
   return (
     <main>
-      {/* Hero */}
-      <section
-        className="relative flex flex-col items-center justify-center text-center px-4 overflow-hidden"
-        style={{
-          minHeight: '92vh',
-          background: 'linear-gradient(150deg, #0f2444 0%, #1e3a5c 35%, #2d5282 70%, #4a6fa5 100%)',
-          clipPath: 'polygon(0 0, 100% 0, 100% 93%, 0 100%)',
-          paddingBottom: '5rem',
-        }}
-      >
-        <div className="relative z-10 max-w-4xl">
-          <p className="text-white/50 text-xs tracking-[0.6em] uppercase mb-8">
-            Streetwear · Est. 2020
-          </p>
+      {/* Hero – white background */}
+      <section className="bg-white border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+          <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Text */}
+            <div className="flex-1 text-center lg:text-left">
+              <p className="text-brand-blue text-xs tracking-[0.5em] uppercase mb-5">
+                Streetwear · Est. 2020
+              </p>
+              <h1
+                className="font-black text-foreground uppercase tracking-tighter leading-[0.88] mb-6"
+                style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)' }}
+              >
+                Bazooka
+                <br />
+                <span className="text-brand-blue">City</span>
+              </h1>
+              <p className="text-brand-grey text-sm sm:text-base tracking-[0.3em] uppercase mb-10">
+                Stärke &nbsp;·&nbsp; Resilienz &nbsp;·&nbsp; Style
+              </p>
+              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3">
+                <Link
+                  href="/shop"
+                  className="inline-block bg-brand-blue text-white px-10 py-3.5 text-xs font-bold tracking-[0.25em] uppercase hover:bg-brand-blue-dark transition-colors"
+                >
+                  Shop entdecken
+                </Link>
+                <Link
+                  href="/story"
+                  className="inline-block border border-brand-blue text-brand-blue px-10 py-3.5 text-xs font-bold tracking-[0.25em] uppercase hover:bg-brand-blue hover:text-white transition-colors"
+                >
+                  Unsere Story
+                </Link>
+              </div>
+            </div>
 
-          <h1
-            className="font-bold tracking-tighter text-white uppercase leading-[0.88] mb-10"
-            style={{ fontSize: 'clamp(4rem, 14vw, 11rem)' }}
-          >
-            Bazooka
-            <br />
-            <span style={{ WebkitTextStroke: '2px rgba(255,255,255,0.4)', color: 'transparent' }}>
-              City
-            </span>
-          </h1>
-
-          <p className="text-white/65 text-sm sm:text-base tracking-[0.35em] mb-12 uppercase">
-            Stärke &nbsp;·&nbsp; Resilienz &nbsp;·&nbsp; Style
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/shop"
-              className="inline-block bg-white text-brand-blue px-10 py-3.5 text-xs font-bold tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
-            >
-              Shop entdecken
-            </Link>
-            <Link
-              href="/story"
-              className="inline-block border border-white/40 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.25em] uppercase hover:bg-white/10 transition-colors"
-            >
-              Unsere Story
-            </Link>
+            {/* Logo */}
+            <div className="shrink-0 relative w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden shadow-lg">
+              <Image
+                src="/Kleineslogo_Homepage.jpg"
+                alt="Bazooka City Logo"
+                fill
+                sizes="(max-width: 640px) 192px, (max-width: 1024px) 256px, 288px"
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
-        </div>
-
-        {/* decorative lines */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
-          <div className="absolute top-1/4 left-0 right-0 h-px bg-white" />
-          <div className="absolute top-3/4 left-0 right-0 h-px bg-white" />
-          <div className="absolute top-0 bottom-0 left-1/4 w-px bg-white" />
-          <div className="absolute top-0 bottom-0 right-1/4 w-px bg-white" />
         </div>
       </section>
 
-      {/* Brand values strip */}
+      {/* Brand-values strip */}
       <section className="bg-brand-blue">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 grid grid-cols-3 divide-x divide-white/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 grid grid-cols-3 divide-x divide-white/20">
           {['Stärke', 'Resilienz', 'Durchhaltevermögen'].map((value) => (
-            <div key={value} className="text-center py-1">
-              <p className="text-white text-xs tracking-[0.25em] uppercase">{value}</p>
-            </div>
+            <p key={value} className="text-center text-white text-xs tracking-[0.25em] uppercase py-1">
+              {value}
+            </p>
           ))}
         </div>
       </section>
@@ -105,9 +102,7 @@ export default async function HomePage() {
       {/* Brand teaser */}
       <section className="bg-card border-y border-border">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <p className="text-brand-blue text-xs tracking-[0.4em] uppercase mb-4">
-            Die Marke
-          </p>
+          <p className="text-brand-blue text-xs tracking-[0.4em] uppercase mb-4">Die Marke</p>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 leading-snug">
             Mehr als Streetwear.
           </h2>
