@@ -16,7 +16,7 @@ export default function ProductTabs({ description, tags, productType }: ProductT
   return (
     <div className="bg-white border border-gray-200">
       {/* Tab headers */}
-      <div className="flex border-b border-gray-200">
+      <div className="flex border-b border-gray-200 overflow-x-auto scrollbar-none">
         {TABS.map((tab, i) => (
           <button
             key={tab}

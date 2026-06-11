@@ -7,7 +7,7 @@ type ShopifyFetchParams = {
 export async function shopifyFetch<T>({
   query,
   variables,
-  revalidate = 60,
+  revalidate = 3600,
 }: ShopifyFetchParams): Promise<T> {
   const rawDomain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
   const token = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;

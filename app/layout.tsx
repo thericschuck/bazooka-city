@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Barlow_Condensed, IBM_Plex_Sans, Syne, Space_Grotesk } from 'next/font/google';
+import { Barlow_Condensed, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,24 +9,16 @@ const barlowCondensed = Barlow_Condensed({
   variable: '--font-barlow-condensed',
   subsets: ['latin'],
   weight: ['600', '700', '800', '900'],
+  display: 'swap',
+  preload: true,
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: '--font-ibm-plex-sans',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-});
-
-const syne = Syne({
-  variable: '--font-syne',
-  subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
-  subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -38,7 +30,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={`${barlowCondensed.variable} ${ibmPlexSans.variable} ${syne.variable} ${spaceGrotesk.variable}`}>
+    <html lang="de" className={`${barlowCondensed.variable} ${ibmPlexSans.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://cdn.shopify.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.shopify.com" />
+        <link rel="preload" href="/hero-frames/ezgif-frame-050.webp" as="image" />
+      </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Providers>
           <Navbar />

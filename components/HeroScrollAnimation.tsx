@@ -6,7 +6,6 @@ import Link from 'next/link';
 const FRAME_START = 50;
 const FRAME_END = 66;
 const FRAME_COUNT = FRAME_END - FRAME_START + 1;
-const SCROLL_HEIGHT = '550vh';
 
 function getTextParams() {
   const vh = window.innerHeight;
@@ -19,7 +18,7 @@ function getTextParams() {
 }
 
 function framePath(i: number) {
-  return `/hero-frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
+  return `/hero-frames/ezgif-frame-${String(i).padStart(3, '0')}.webp`;
 }
 
 export default function HeroScrollAnimation() {
@@ -46,6 +45,10 @@ export default function HeroScrollAnimation() {
     function setSize() {
       if (!canvas) return;
       textParamsRef.current = getTextParams();
+      // Shorter scroll distance on mobile so animation feels snappier
+      if (containerRef.current) {
+        containerRef.current.style.height = window.innerWidth < 640 ? '280vh' : '550vh';
+      }
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
@@ -102,18 +105,36 @@ export default function HeroScrollAnimation() {
       }
     }
 
-    // Load first frame immediately, rest in background
+    // Frame 0: load + decode immediately for instant first paint
     const first = new Image();
     first.src = framePath(FRAME_START);
-    first.onload = () => {
+    first.decode().then(() => {
       images.current[0] = first;
       setSize();
-    };
+    }).catch(() => {
+      images.current[0] = first;
+      setSize();
+    });
 
-    for (let i = 1; i < FRAME_COUNT; i++) {
+    // Frames 1–4: load eagerly (visible early in scroll)
+    for (let i = 1; i <= Math.min(4, FRAME_COUNT - 1); i++) {
       const img = new Image();
       img.src = framePath(FRAME_START + i);
       images.current[i] = img;
+    }
+
+    // Remaining frames: defer until browser is idle
+    const loadRest = () => {
+      for (let i = 5; i < FRAME_COUNT; i++) {
+        const img = new Image();
+        img.src = framePath(FRAME_START + i);
+        images.current[i] = img;
+      }
+    };
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadRest, { timeout: 2000 });
+    } else {
+      setTimeout(loadRest, 500);
     }
 
     setSize();
@@ -128,7 +149,7 @@ export default function HeroScrollAnimation() {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ height: SCROLL_HEIGHT }} className="relative">
+    <div ref={containerRef} style={{ height: '550vh' }} className="relative">
       <div className="sticky top-0 h-screen overflow-hidden bg-black">
         <canvas ref={canvasRef} className="block" />
 
