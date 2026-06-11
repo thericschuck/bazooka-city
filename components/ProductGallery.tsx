@@ -15,7 +15,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+      <div className="relative aspect-3/4 bg-gray-100 overflow-hidden">
         {active && (
           <Image
             src={active.url}
@@ -29,7 +29,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
       </div>
 
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
           {images.map((img, i) => (
             <button
               key={img.url}

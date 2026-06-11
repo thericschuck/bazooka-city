@@ -102,9 +102,9 @@ export default function ProductActions({ variants }: ProductActionsProps) {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="overflow-hidden mb-4"
+                className="overflow-hidden overflow-x-auto mb-4"
               >
-                <table className="w-full text-xs border-collapse">
+                <table className="w-full text-xs border-collapse min-w-[320px]">
                   <thead>
                     <tr className="bg-gray-100">
                       {['Größe', 'Brust (cm)', 'Taille (cm)', 'Hüfte (cm)'].map((h) => (

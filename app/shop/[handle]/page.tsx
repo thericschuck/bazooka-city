@@ -75,7 +75,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         {/* Product section */}
         <div className="bg-white border border-gray-200 p-6 lg:p-10 mb-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16">
             <ProductGallery images={images} title={product.title} />
 
             <div className="flex flex-col gap-6">

@@ -7,9 +7,16 @@ const FRAME_START = 50;
 const FRAME_END = 66;
 const FRAME_COUNT = FRAME_END - FRAME_START + 1;
 const SCROLL_HEIGHT = '550vh';
-const TEXT_INITIAL_Y = 400;  // px below center at start
-const TEXT_TRAVEL = 620;     // px upward over full scroll range
-const TEXT_STOP_Y = -80;     // px from center — text stops here and stays
+
+function getTextParams() {
+  const vh = window.innerHeight;
+  const mobile = window.innerWidth < 640;
+  return {
+    initialY: mobile ? vh * 0.30 : Math.min(400, vh * 0.45),
+    travel:   mobile ? vh * 0.55 : Math.min(620, vh * 0.72),
+    stopY:    mobile ? -vh * 0.08 : -80,
+  };
+}
 
 function framePath(i: number) {
   return `/hero-frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
@@ -22,13 +29,23 @@ export default function HeroScrollAnimation() {
   const images = useRef<(HTMLImageElement | null)[]>(Array(FRAME_COUNT).fill(null));
   const currentFrame = useRef(0);
   const raf = useRef<number>(0);
+  const textParamsRef = useRef({ initialY: 400, travel: 620, stopY: -80 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Compute and cache text params; re-cache on resize
+    textParamsRef.current = getTextParams();
+
+    // Set initial text position
+    if (textRef.current) {
+      textRef.current.style.transform = `translateY(${textParamsRef.current.initialY}px)`;
+    }
+
     function setSize() {
       if (!canvas) return;
+      textParamsRef.current = getTextParams();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
@@ -79,7 +96,8 @@ export default function HeroScrollAnimation() {
 
       // Move text upward without re-render
       if (textRef.current) {
-        const y = Math.max(TEXT_STOP_Y, TEXT_INITIAL_Y - progress * TEXT_TRAVEL);
+        const { initialY, travel, stopY } = textParamsRef.current;
+        const y = Math.max(stopY, initialY - progress * travel);
         textRef.current.style.transform = `translateY(${y}px)`;
       }
     }
@@ -125,7 +143,7 @@ export default function HeroScrollAnimation() {
           <div
             ref={textRef}
             className="flex flex-col items-center text-center"
-            style={{ willChange: 'transform', transform: `translateY(${TEXT_INITIAL_Y}px)` }}
+            style={{ willChange: 'transform' }}
           >
             <p
               className="text-[10px] tracking-[0.55em] uppercase mb-4 font-semibold"

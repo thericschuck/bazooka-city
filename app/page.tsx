@@ -39,58 +39,64 @@ export default async function HomePage() {
           <div className="grid grid-cols-3 divide-x divide-white/10">
 
             {/* Stärke */}
-            <div className="flex flex-col items-center gap-4 px-6">
+            <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
               <div
-                className="w-12 h-12 flex items-center justify-center"
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center"
                 style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
                   <path d="M6.5 6.5l11 11M17.5 6.5l-11 11" />
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               </div>
-              <div className="text-center">
-                <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-2">
-                  Stärke
-                </p>
-                <div className="w-6 h-0.5 mx-auto" style={{ background: 'var(--bc-steel)' }} />
+              <div className="flex flex-col items-center gap-2">
+                <div className="min-h-[2.5em] flex items-end justify-center">
+                  <p className="text-[8px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.35em] uppercase text-white leading-tight text-center">
+                    Stärke
+                  </p>
+                </div>
+                <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
               </div>
             </div>
 
             {/* Resilienz */}
-            <div className="flex flex-col items-center gap-4 px-6">
+            <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
               <div
-                className="w-12 h-12 flex items-center justify-center"
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center"
                 style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
                   <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" />
                 </svg>
               </div>
-              <div className="text-center">
-                <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-2">
-                  Resilienz
-                </p>
-                <div className="w-6 h-0.5 mx-auto" style={{ background: 'var(--bc-steel)' }} />
+              <div className="flex flex-col items-center gap-2">
+                <div className="min-h-[2.5em] flex items-end justify-center">
+                  <p className="text-[8px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.35em] uppercase text-white leading-tight text-center">
+                    Resilienz
+                  </p>
+                </div>
+                <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
               </div>
             </div>
 
             {/* Durchhaltevermögen */}
-            <div className="flex flex-col items-center gap-4 px-6">
+            <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
               <div
-                className="w-12 h-12 flex items-center justify-center"
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center"
                 style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
                   <polyline points="16 7 22 7 22 13" />
                 </svg>
               </div>
-              <div className="text-center">
-                <p className="text-xs font-bold tracking-[0.35em] uppercase text-white mb-2">
-                  Durchhaltevermögen
-                </p>
-                <div className="w-6 h-0.5 mx-auto" style={{ background: 'var(--bc-steel)' }} />
+              <div className="flex flex-col items-center gap-2">
+                <div className="min-h-[2.5em] flex items-end justify-center">
+                  <p className="text-[7px] sm:text-[10px] font-bold tracking-[0.08em] sm:tracking-[0.2em] uppercase text-white leading-tight text-center">
+                    Durchhalte&shy;vermögen
+                  </p>
+                </div>
+                <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
               </div>
             </div>
 
