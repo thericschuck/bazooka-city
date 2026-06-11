@@ -36,11 +36,13 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="hidden sm:flex items-center gap-8 lg:gap-10">
-            <Link href="/story" className="text-white hover:text-white/80 text-sm font-bold tracking-[0.18em] uppercase transition-colors">
+            <Link href="/story" className="group relative text-white/75 hover:text-white text-sm font-bold tracking-[0.18em] uppercase transition-colors duration-200 pb-1">
               Story
+              <span className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ease-out" style={{ background: 'var(--bc-steel)' }} />
             </Link>
-            <Link href="/shop" className="text-white hover:text-white/80 text-sm font-bold tracking-[0.18em] uppercase transition-colors">
+            <Link href="/shop" className="group relative text-white/75 hover:text-white text-sm font-bold tracking-[0.18em] uppercase transition-colors duration-200 pb-1">
               Shop
+              <span className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ease-out" style={{ background: 'var(--bc-steel)' }} />
             </Link>
           </div>
         </div>
@@ -62,9 +64,10 @@ export default function Navbar() {
         <div className="flex items-center justify-end gap-6 lg:gap-10">
           <Link
             href="/kontakt"
-            className="hidden sm:block text-white hover:text-white/80 text-sm font-bold tracking-[0.18em] uppercase transition-colors"
+            className="group relative hidden sm:block text-white/75 hover:text-white text-sm font-bold tracking-[0.18em] uppercase transition-colors duration-200 pb-1"
           >
             Kontakt
+            <span className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300 ease-out" style={{ background: 'var(--bc-steel)' }} />
           </Link>
           <CartIcon />
         </div>
@@ -81,9 +84,15 @@ export default function Navbar() {
               key={href}
               href={href}
               onClick={() => setOpen(false)}
-              className="text-white/90 hover:text-white font-bold tracking-[0.2em] uppercase text-sm py-3 border-b border-white/10 last:border-0 transition-colors"
+              className="group flex items-center justify-between text-white/80 hover:text-white font-bold tracking-[0.2em] uppercase text-sm py-3 border-b border-white/10 last:border-0 transition-colors duration-200"
             >
               {label}
+              <span
+                className="text-xs opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-200"
+                style={{ color: 'var(--bc-steel)' }}
+              >
+                →
+              </span>
             </Link>
           ))}
         </div>

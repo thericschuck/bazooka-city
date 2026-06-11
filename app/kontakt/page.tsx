@@ -10,9 +10,12 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <main
+    <>
+      <link rel="preload" href="/concrete.jpg" as="image" />
+      <main
       className="min-h-screen"
       style={{
+        backgroundColor: '#c8c2ba',
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0)), url(/concrete.jpg)',
         backgroundSize: 'auto, cover',
         backgroundAttachment: 'local, fixed',
@@ -112,5 +115,6 @@ export default function KontaktPage() {
         </div>
       </div>
     </main>
+    </>
   );
 }
