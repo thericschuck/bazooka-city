@@ -181,7 +181,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
               )}
             </div>
 
-            {cartLines.length > 0 && cost?.subtotalAmount && (
+            {cartLines.length > 0 && cost?.subtotalAmount?.amount && cost?.subtotalAmount?.currencyCode && (
               <div className="px-6 py-5 border-t border-border bg-card">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-sm text-brand-grey">Zwischensumme</span>
