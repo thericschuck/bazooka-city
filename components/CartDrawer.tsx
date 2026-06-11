@@ -117,7 +117,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                           {variantTitle && variantTitle !== 'Default Title' && (
                             <p className="text-xs text-brand-grey mt-0.5">{variantTitle}</p>
                           )}
-                          {price && (
+                          {price?.amount && price?.currencyCode && (
                             <p className="text-sm font-semibold text-brand-blue mt-1">
                               {formatPrice(price.amount, price.currencyCode)}
                             </p>
