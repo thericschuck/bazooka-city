@@ -1,65 +1,129 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { shopifyFetch } from '@/lib/shopify';
+import { ALL_PRODUCTS_QUERY } from '@/lib/queries';
+import type { ShopifyProductsResponse } from '@/lib/types';
+import ProductCard from '@/components/ProductCard';
 
-export default function Home() {
+export default async function HomePage() {
+  const data = await shopifyFetch<ShopifyProductsResponse>({
+    query: ALL_PRODUCTS_QUERY,
+    variables: { first: 4 },
+  });
+
+  const products = data.products.edges.map((e) => e.node);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* Hero */}
+      <section
+        className="relative flex flex-col items-center justify-center text-center px-4 overflow-hidden"
+        style={{
+          minHeight: '92vh',
+          background: 'linear-gradient(150deg, #0f2444 0%, #1e3a5c 35%, #2d5282 70%, #4a6fa5 100%)',
+          clipPath: 'polygon(0 0, 100% 0, 100% 93%, 0 100%)',
+          paddingBottom: '5rem',
+        }}
+      >
+        <div className="relative z-10 max-w-4xl">
+          <p className="text-white/50 text-xs tracking-[0.6em] uppercase mb-8">
+            Streetwear · Est. 2020
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1
+            className="font-bold tracking-tighter text-white uppercase leading-[0.88] mb-10"
+            style={{ fontSize: 'clamp(4rem, 14vw, 11rem)' }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Bazooka
+            <br />
+            <span style={{ WebkitTextStroke: '2px rgba(255,255,255,0.4)', color: 'transparent' }}>
+              City
+            </span>
+          </h1>
+
+          <p className="text-white/65 text-sm sm:text-base tracking-[0.35em] mb-12 uppercase">
+            Stärke &nbsp;·&nbsp; Resilienz &nbsp;·&nbsp; Style
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/shop"
+              className="inline-block bg-white text-brand-blue px-10 py-3.5 text-xs font-bold tracking-[0.25em] uppercase hover:bg-white/90 transition-colors"
+            >
+              Shop entdecken
+            </Link>
+            <Link
+              href="/story"
+              className="inline-block border border-white/40 text-white px-10 py-3.5 text-xs font-semibold tracking-[0.25em] uppercase hover:bg-white/10 transition-colors"
+            >
+              Unsere Story
+            </Link>
+          </div>
         </div>
-      </main>
-    </div>
+
+        {/* decorative lines */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10">
+          <div className="absolute top-1/4 left-0 right-0 h-px bg-white" />
+          <div className="absolute top-3/4 left-0 right-0 h-px bg-white" />
+          <div className="absolute top-0 bottom-0 left-1/4 w-px bg-white" />
+          <div className="absolute top-0 bottom-0 right-1/4 w-px bg-white" />
+        </div>
+      </section>
+
+      {/* Brand values strip */}
+      <section className="bg-brand-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 grid grid-cols-3 divide-x divide-white/20">
+          {['Stärke', 'Resilienz', 'Durchhaltevermögen'].map((value) => (
+            <div key={value} className="text-center py-1">
+              <p className="text-white text-xs tracking-[0.25em] uppercase">{value}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <p className="text-brand-blue text-xs tracking-[0.4em] uppercase mb-2">Auswahl</p>
+            <h2 className="text-3xl font-bold text-foreground tracking-tight">Featured</h2>
+          </div>
+          <Link
+            href="/shop"
+            className="text-xs text-brand-grey hover:text-brand-blue transition-colors tracking-[0.2em] uppercase"
+          >
+            Alle ansehen →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* Brand teaser */}
+      <section className="bg-card border-y border-border">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <p className="text-brand-blue text-xs tracking-[0.4em] uppercase mb-4">
+            Die Marke
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 leading-snug">
+            Mehr als Streetwear.
+          </h2>
+          <p className="text-brand-grey leading-relaxed mb-8 text-sm sm:text-base">
+            BAZOOKA CITY© steht nicht nur für physische Stärke, sondern vor allem für mentale
+            Stärke und den Glauben daran, dass man trotz Schwierigkeiten weiterhin kämpfen kann —
+            ein Symbol für Resilienz und Durchhaltevermögen.
+          </p>
+          <Link
+            href="/story"
+            className="inline-block bg-brand-blue text-white px-8 py-3 text-xs font-bold tracking-[0.25em] uppercase hover:bg-brand-blue-dark transition-colors"
+          >
+            Story lesen
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
