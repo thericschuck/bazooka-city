@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ContactForm from '@/components/ContactForm';
 
 
 export const metadata: Metadata = {
@@ -86,7 +87,10 @@ export default function KontaktPage() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mb-10" />
+        {/* Contact form */}
+        <ContactForm />
+
+        <div className="border-t border-gray-200 mt-10 mb-10" />
 
         <div className="text-center">
           <p className="text-gray-500 text-sm mb-5">Direkt zur Kollektion?</p>

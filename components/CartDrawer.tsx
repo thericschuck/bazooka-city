@@ -91,13 +91,15 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                 <div className="flex flex-col divide-y divide-border">
                   {cartLines.map((line) => {
                     if (!line) return null;
+                    const lineId = line.id ?? '';
+                    const qty = line.quantity ?? 1;
                     const image = line.merchandise?.image;
                     const productTitle = line.merchandise?.product?.title ?? '';
                     const variantTitle = line.merchandise?.title;
                     const price = line.merchandise?.price;
 
                     return (
-                      <div key={line.id} className="flex gap-4 py-4">
+                      <div key={lineId} className="flex gap-4 py-4">
                         <div className="relative w-16 h-20 bg-card shrink-0 overflow-hidden">
                           {image?.url && (
                             <Image
@@ -126,10 +128,10 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                           <div className="flex items-center gap-2 mt-2">
                             <button
                               onClick={() => {
-                                if (line.quantity <= 1) {
-                                  linesRemove([line.id]);
+                                if (qty <= 1) {
+                                  linesRemove([lineId]);
                                 } else {
-                                  linesUpdate([{ id: line.id, quantity: line.quantity - 1 }]);
+                                  linesUpdate([{ id: lineId, quantity: qty - 1 }]);
                                 }
                               }}
                               className="w-7 h-7 border border-border flex items-center justify-center text-brand-grey hover:border-brand-blue hover:text-brand-blue transition-colors"
@@ -138,11 +140,11 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                               −
                             </button>
                             <span className="text-sm w-5 text-center font-medium">
-                              {line.quantity}
+                              {qty}
                             </span>
                             <button
                               onClick={() =>
-                                linesUpdate([{ id: line.id, quantity: line.quantity + 1 }])
+                                linesUpdate([{ id: lineId, quantity: qty + 1 }])
                               }
                               className="w-7 h-7 border border-border flex items-center justify-center text-brand-grey hover:border-brand-blue hover:text-brand-blue transition-colors"
                               aria-label="Menge erhöhen"
@@ -151,7 +153,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                             </button>
 
                             <button
-                              onClick={() => linesRemove([line.id])}
+                              onClick={() => linesRemove([lineId])}
                               className="ml-auto text-brand-grey/40 hover:text-red-500 transition-colors"
                               aria-label="Artikel entfernen"
                             >
