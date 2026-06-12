@@ -77,13 +77,7 @@ export default function StoryPage() {
               </p>
 
               {/* Quote box */}
-              <div className="relative border border-gray-200 p-7 sm:p-8 bg-gray-50">
-                <div
-                  className="absolute -top-3 -left-3 w-8 h-8 flex items-center justify-center text-white text-lg font-black"
-                  style={{ background: 'var(--bc-steel)', fontFamily: 'var(--font-barlow-condensed)' }}
-                >
-                  ⚡
-                </div>
+              <div className="border border-gray-200 p-7 sm:p-8 bg-gray-50">
                 <p className="text-gray-800 italic text-base sm:text-lg leading-relaxed mb-4">
                   "Der Vorschlag der Namensgebung kam von Christian L. –
                   BAZOOKA CITY© war geboren."
