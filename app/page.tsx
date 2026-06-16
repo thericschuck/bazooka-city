@@ -1,20 +1,22 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { shopifyFetch } from '@/lib/shopify';
 import { ALL_PRODUCTS_QUERY } from '@/lib/queries';
 import type { ShopifyProductsResponse } from '@/lib/types';
 import HeroScrollAnimation from '@/components/HeroScrollAnimation';
-import ParallaxGrid from '@/components/ParallaxGrid';
-import ProductCard from '@/components/ProductCard';
+import FeaturedCarousel from '@/components/FeaturedCarouselLoader';
 
 export default async function HomePage() {
   const data = await shopifyFetch<ShopifyProductsResponse>({
     query: ALL_PRODUCTS_QUERY,
-    variables: { first: 4 },
+    variables: { first: 8 },
   });
 
   const products = data.products.edges.map((e) => e.node);
 
   return (
+    <>
+    <link rel="preload" href="/hero-frames/ezgif-frame-050.webp" as="image" />
     <main>
       <HeroScrollAnimation />
 
@@ -38,6 +40,26 @@ export default async function HomePage() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-3 divide-x divide-white/10">
 
+            {/* Resilienz */}
+            <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
+              <div
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center"
+                style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
+                  <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" />
+                </svg>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="min-h-[2.5em] flex items-end justify-center">
+                  <p className="text-[8px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.35em] uppercase text-white leading-tight text-center">
+                    Resilienz
+                  </p>
+                </div>
+                <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
+              </div>
+            </div>
+
             {/* Stärke */}
             <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
               <div
@@ -53,26 +75,6 @@ export default async function HomePage() {
                 <div className="min-h-[2.5em] flex items-end justify-center">
                   <p className="text-[8px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.35em] uppercase text-white leading-tight text-center">
                     Stärke
-                  </p>
-                </div>
-                <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
-              </div>
-            </div>
-
-            {/* Resilienz */}
-            <div className="flex flex-col items-center gap-4 px-2 sm:px-6">
-              <div
-                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center"
-                style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round">
-                  <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z" />
-                </svg>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="min-h-[2.5em] flex items-end justify-center">
-                  <p className="text-[8px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.35em] uppercase text-white leading-tight text-center">
-                    Resilienz
                   </p>
                 </div>
                 <div className="w-4 sm:w-6 h-0.5" style={{ background: 'var(--bc-steel)' }} />
@@ -105,48 +107,49 @@ export default async function HomePage() {
       </section>
 
       {/* ── Featured Products ── */}
-      <section
-        className="relative py-6 px-4 sm:px-6 lg:px-8"
-        style={{
-          backgroundImage: 'url(/Steel%20Background.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        {/* Heavy white overlay — texture only visible at edges */}
-        <div className="absolute inset-0" style={{ background: 'rgba(255,255,255,0.25)' }} />
+      <section className="relative overflow-hidden">
+        {/* Blurred steel background — served as WebP/AVIF via Next.js Image */}
+        <Image
+          src="/Steel Background.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          style={{ filter: 'blur(8px)', transform: 'scale(1.06)' }}
+          quality={20}
+          sizes="100vw"
+          priority={false}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ background: 'rgba(8,8,10,0.70)' }} />
 
-        <div className="relative max-w-7xl mx-auto bg-white py-12 px-6 sm:px-10 shadow-sm">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="text-[10px] tracking-[0.45em] uppercase mb-1.5 font-semibold" style={{ color: 'var(--bc-steel)' }}>
-                Auswahl
-              </p>
-              <h2
-                className="font-black text-3xl text-gray-900 tracking-tight uppercase"
-                style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+        <div className="relative pt-12 pb-4 px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-end justify-between mb-2 px-2">
+              <div>
+                <p
+                  className="text-[10px] tracking-[0.45em] uppercase mb-1.5 font-semibold"
+                  style={{ color: 'var(--bc-steel)' }}
+                >
+                  Auswahl
+                </p>
+                <h2
+                  className="font-black text-3xl text-white tracking-tight uppercase"
+                  style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+                >
+                  Featured
+                </h2>
+              </div>
+              <Link
+                href="/shop"
+                className="text-xs font-semibold tracking-[0.2em] uppercase transition-opacity hover:opacity-60"
+                style={{ color: 'var(--bc-steel)' }}
               >
-                Featured
-              </h2>
+                Alle ansehen →
+              </Link>
             </div>
-            <Link
-              href="/shop"
-              className="text-xs font-semibold tracking-[0.2em] uppercase transition-colors"
-              style={{ color: 'var(--bc-steel)' }}
-            >
-              Alle ansehen →
-            </Link>
-          </div>
 
-          <ParallaxGrid>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {products.map((product) => (
-                <div key={product.id} className="border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </ParallaxGrid>
+            <FeaturedCarousel products={products} />
+          </div>
         </div>
       </section>
 
@@ -209,5 +212,6 @@ export default async function HomePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

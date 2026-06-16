@@ -15,6 +15,22 @@
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
+  "browserslist": {
+    "production": [
+      "chrome >= 96",
+      "edge >= 96",
+      "firefox >= 94",
+      "safari >= 15",
+      "ios_saf >= 15",
+      "samsung >= 17",
+      "opera >= 82"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

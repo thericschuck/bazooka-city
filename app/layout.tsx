@@ -34,7 +34,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://cdn.shopify.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdn.shopify.com" />
-        <link rel="preload" href="/hero-frames/ezgif-frame-050.webp" as="image" />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <Providers>

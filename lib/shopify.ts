@@ -34,6 +34,14 @@ export async function shopifyFetch<T>({
     throw new Error(`Shopify API error: ${res.status} ${res.statusText}`);
   }
 
+  const contentType = res.headers.get('content-type') ?? '';
+  if (!contentType.includes('application/json')) {
+    const text = await res.text();
+    throw new Error(
+      `Shopify returned HTML instead of JSON — check your NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN and NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN.\n\nResponse preview: ${text.slice(0, 200)}`
+    );
+  }
+
   const json = (await res.json()) as {
     data: T;
     errors?: { message: string }[];

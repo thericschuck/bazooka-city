@@ -116,8 +116,9 @@ export default function HeroScrollAnimation() {
       setSize();
     });
 
-    // Frames 1–4: load eagerly (visible early in scroll)
-    for (let i = 1; i <= Math.min(4, FRAME_COUNT - 1); i++) {
+    // On mobile load 2 eager frames, on desktop 4 (scroll is longer)
+    const eagerCount = window.innerWidth < 640 ? 2 : 4;
+    for (let i = 1; i <= Math.min(eagerCount, FRAME_COUNT - 1); i++) {
       const img = new Image();
       img.src = framePath(FRAME_START + i);
       images.current[i] = img;
@@ -125,7 +126,7 @@ export default function HeroScrollAnimation() {
 
     // Remaining frames: defer until browser is idle
     const loadRest = () => {
-      for (let i = 5; i < FRAME_COUNT; i++) {
+      for (let i = eagerCount + 1; i < FRAME_COUNT; i++) {
         const img = new Image();
         img.src = framePath(FRAME_START + i);
         images.current[i] = img;
